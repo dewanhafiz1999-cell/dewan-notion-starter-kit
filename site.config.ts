@@ -24,10 +24,6 @@ export default siteConfig({
   defaultPageIcon: null,
   defaultPageCover: null,
   defaultPageCoverPosition: 0.5,
- 
-  // 🟢 FINAL THEME FIX: Use theme options directly
-  // 'system' enables automatic detection, which includes the toggle.
-  defaultTheme: 'system', 
 
   // navigation style
   navigationStyle: 'default'
