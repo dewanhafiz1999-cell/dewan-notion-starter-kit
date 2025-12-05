@@ -25,17 +25,6 @@ export default siteConfig({
   defaultPageCover: null,
   defaultPageCoverPosition: 0.5,
 
-  // =========================================================================
-  // 🟢 THEME CHANGES ADDED HERE
-  
-  // Sets the default color scheme (light or dark)
-  defaultTheme: 'light', 
-  
-  // If set to false, the theme toggle icon in the navigation bar is removed
-  isThemeToggleEnabled: false, 
-  
-  // =========================================================================
-
   // navigation style
   navigationStyle: 'default'
 })
