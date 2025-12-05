@@ -16,14 +16,18 @@ export default siteConfig({
   description: 'Portfolio and personal website',
 
   // social usernames (optional)
-  twitter: undefined, // Changed from null to undefined to fix TypeScript error
-  github: undefined,  // Changed from null to undefined to fix TypeScript error
-  linkedin: undefined, // Changed from null to undefined to fix TypeScript error
+  twitter: undefined,
+  github: undefined,
+  linkedin: undefined,
 
   // default notion icon and cover images (optional)
   defaultPageIcon: null,
   defaultPageCover: null,
   defaultPageCoverPosition: 0.5,
+ 
+  // 🟢 FINAL THEME FIX: Use theme options directly
+  // 'system' enables automatic detection, which includes the toggle.
+  defaultTheme: 'system', 
 
   // navigation style
   navigationStyle: 'default'
