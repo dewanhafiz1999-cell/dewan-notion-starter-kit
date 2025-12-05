@@ -24,7 +24,8 @@ export default withBundleAnalyzer({
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;"
   },
 
-  // This was the fix for the previous build error, and it stays here.
+  // This explicitly tells Next.js to use the classic 'webpack' compiler 
+  // (This line might be redundant now, but keep it for safety)
   turbopack: { compiler: 'webpack' }, 
 
   webpack: (config) => {
@@ -40,7 +41,6 @@ export default withBundleAnalyzer({
     return config
   },
 
-  // 🟢 NEW CRITICAL FIX for "katex.min.css" not found
-  // We add 'katex' here to tell Next.js to properly process its code (including CSS imports).
+  // FIX: Add 'katex' to resolve the "Module not found" CSS error
   transpilePackages: ['react-tweet', 'katex']
 })
