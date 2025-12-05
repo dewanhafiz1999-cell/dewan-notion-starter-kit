@@ -24,6 +24,13 @@ export default withBundleAnalyzer({
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;"
   },
 
+  // =========================================================================
+  // 🟢 CRITICAL FIX for Next.js 16/Turbopack compatibility
+  // This explicitly tells Next.js to use the classic 'webpack' compiler 
+  // to avoid conflicts with your custom webpack function below.
+  turbopack: { compiler: 'webpack' }, 
+  // =========================================================================
+
   webpack: (config) => {
     // Workaround for ensuring that `react` and `react-dom` resolve correctly
     // when using a locally-linked version of `react-notion-x`.
