@@ -1,6 +1,3 @@
-import path from 'node:path'
-import { fileURLToPath } from 'node:url'
-
 import bundleAnalyzer from '@next/bundle-analyzer'
 
 const withBundleAnalyzer = bundleAnalyzer({
@@ -24,9 +21,6 @@ export default withBundleAnalyzer({
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;"
   },
 
-  // 🟢 FIX 1: Force Next.js to use the stable webpack compiler
-  turbopack: { compiler: 'webpack' }, 
-
-  // 🟢 FIX 2: Correctly compile the third-party 'react-tweet' package
+  // REQUIRED to compile the third-party 'react-tweet' package
   transpilePackages: ['react-tweet']
 })

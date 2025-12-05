@@ -16,9 +16,9 @@ export default siteConfig({
   description: 'Portfolio and personal website',
 
   // social usernames (optional)
-  twitter: '',
-  github: 'dewanhafiz1999-cell',
-  linkedin: '',
+  twitter: null, // Set to null to remove the Twitter link
+  github: null,  // Set to null to remove the GitHub button/link
+  linkedin: null, // Set to null to remove the LinkedIn link
 
   // default notion icon and cover images (optional)
   defaultPageIcon: null,
