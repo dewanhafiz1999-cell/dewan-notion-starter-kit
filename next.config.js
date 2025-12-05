@@ -22,6 +22,11 @@ export default withBundleAnalyzer({
     formats: ['image/avif', 'image/webp'],
     dangerouslyAllowSVG: true,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;"
-  }
-  // All other custom configs (webpack, turbopack, transpilePackages) are removed
+  },
+
+  // 🟢 FIX 1: Force Next.js to use the stable webpack compiler
+  turbopack: { compiler: 'webpack' }, 
+
+  // 🟢 FIX 2: Correctly compile the third-party 'react-tweet' package
+  transpilePackages: ['react-tweet']
 })
