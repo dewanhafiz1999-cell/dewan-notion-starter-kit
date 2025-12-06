@@ -10,7 +10,7 @@ import BodyClassName from 'react-body-classname'
 import {
   type NotionComponents,
   NotionRenderer,
-  useNotionContext // <--- CRITICAL IMPORT IS HERE
+  useNotionContext // CRITICAL: Must be imported
 } from 'react-notion-x'
 import { EmbeddedTweet, TweetNotFound, TweetSkeleton } from 'react-tweet'
 import { useSearchParam } from 'react-use'
@@ -187,6 +187,7 @@ const propertyTextValue = (
 function CustomEmbed({ block, blockId }: { block: any; blockId: string }) {
   const { recordMap, components } = useNotionContext()
   // CRITICAL FIX: Destructure the original Embed component and rename it to DefaultEmbed
+  // This prevents infinite recursion.
   const { Embed: DefaultEmbed } = components!
 
   // Note: Notion's block structure can be tricky, check both common property paths
@@ -202,7 +203,7 @@ function CustomEmbed({ block, blockId }: { block: any; blockId: string }) {
       <div 
         key={blockId} 
         className='notion-asset-wrapper'
-        // Inject the data-theme attribute for dark mode detection
+        // Inject the data-theme attribute for dark mode detection (Gist theming fix)
         data-theme='dark' 
         style={{ width: '100%' }}
       >
