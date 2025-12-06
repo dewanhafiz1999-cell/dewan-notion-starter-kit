@@ -27,14 +27,9 @@
   white-space: normal; /* Forces text within lists to wrap normally */
 }
 
-/* Fix 5: Embedded Content Theme Fix */
-/* This ensures embedded GitHub/other content respects the parent theme */
+/* Fix 5: Embedded Content Base Style */
 .notion-asset-wrapper iframe {
   background-color: transparent !important;
-}
-
-.dark-mode .notion-asset-wrapper iframe {
-  filter: invert(0.9) hue-rotate(180deg) !important;
 }
 
 /* Fix 6: Adjust padding for smaller screens to prevent text distortion */

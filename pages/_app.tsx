@@ -1,4 +1,4 @@
-// 1. Core styles required for Notion blocks and default theme (don't touch)
+// 1. Core styles required for Notion blocks and default theme
 import 'react-notion-x/src/styles.css'
 import 'prismjs/themes/prism-coy.css'
 
@@ -6,6 +6,7 @@ import 'prismjs/themes/prism-coy.css'
 import 'styles/global.css'
 import 'styles/notion.css'
 import 'styles/prism-theme.css' 
+// 💡 The Dark Mode logic (BodyClassName/useDarkMode) has been removed from this file.
 
 import type { AppProps } from 'next/app'
 import * as Fathom from 'fathom-client'
@@ -26,7 +27,6 @@ if (!isServer) {
   bootstrap()
 }
 
-// 🟢 CRITICAL FIX: The default export must be correctly defined for Next.js
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter()
 
@@ -56,5 +56,6 @@ export default function App({ Component, pageProps }: AppProps) {
     }
   }, [router.events])
 
+  // The site component is now rendered directly, locking the theme to light.
   return <Component {...pageProps} />
 }
