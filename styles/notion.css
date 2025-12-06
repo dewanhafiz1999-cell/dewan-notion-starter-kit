@@ -24,10 +24,10 @@
   max-width: 100%;
 }
 .notion-list-item {
-  white-space: normal; /* Forces text within lists to wrap normally */
+  white-space: normal; /* Forces text within lists (like your list items) to wrap normally */
 }
 
-/* Fix 5: Embedded Content Base Style */
+/* Fix 5: Embedded Content Base Style (Light Mode Only) */
 .notion-asset-wrapper iframe {
   background-color: transparent !important;
 }
