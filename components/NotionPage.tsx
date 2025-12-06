@@ -1,12 +1,22 @@
-// components/NotionPage.tsx or wherever you render the blocks
+// components/NotionPage.tsx
 
 import * as React from 'react'
 import { NotionRenderer } from 'react-notion-x'
+// You may need to import your actual type for ExtendedRecordMap if it's not 'any'
+// import { ExtendedRecordMap } from 'notion-types' 
 
-// ... (other imports)
+// 1. Define the component's expected props inline to fix the TypeScript error
+interface NotionPageProps {
+  // Use 'any' as a quick fix, but 'ExtendedRecordMap' is the correct type
+  recordMap: any 
+  rootPageId: string
+  // Include any other props your component originally accepted, like:
+  // previewImages: any
+  // mapPageUrl: any
+}
 
-// Define a maximum recursion depth to prevent stack overflow
-const MAX_RECURSION_DEPTH = 50 
+// NOTE: We are removing the MAX_RECURSION_DEPTH constant and logic 
+// because it was implemented using the non-existent 'blockRenderer' prop.
 
 export const NotionPage: React.FC<NotionPageProps> = ({
   recordMap,
@@ -20,26 +30,12 @@ export const NotionPage: React.FC<NotionPageProps> = ({
       recordMap={recordMap}
       fullPage={true}
       darkMode={false}
-      // ... other props
-      
-      // *** MODIFICATION HERE ***
-      // Override the default block renderer to implement the depth check
-      // This function is called recursively for every block.
-      blockRenderer={({ block, level, properties, defaultRenderer }) => {
-        // If the nesting level exceeds the limit, stop rendering this branch.
-        if (level > MAX_RECURSION_DEPTH) {
-          console.warn(`[Notion Block Guardrail] Maximum recursion depth (${MAX_RECURSION_DEPTH}) exceeded for block ID: ${block.id}. Stopping rendering to prevent crash.`)
-          return (
-            <div style={{ color: 'red', padding: '10px', border: '1px solid red' }}>
-              **Error**: Content nesting limit exceeded (potential infinite loop in Notion data).
-            </div>
-          )
-        }
-        
-        // If the depth is fine, use the default renderer for this block
-        return defaultRenderer({ block, level, properties })
-      }}
-      // *************************
+      // You may need to add or adjust other essential props like rootDomain, mapPageUrl, etc.
+      // E.g., rootDomain={process.env.NEXT_PUBLIC_DOMAIN}
+      // E.g., mapPageUrl={mapPageUrl} 
+
+      // 🛑 CRITICAL FIX: The entire 'blockRenderer' section is REMOVED
+      // as it caused the Type Error and is not a valid prop for NotionRenderer.
     />
   )
 }
