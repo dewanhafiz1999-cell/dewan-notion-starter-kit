@@ -1,30 +1,41 @@
-/* --- START: FIX FOR NOTION TEXT WRAPPING ISSUE --- */
+/* Minimal styles to fix layout, menu, content width, and text wrapping issues. */
 
-/* Target the main page content container */
-.notion-page-content {
-    /* Ensure the content container allows its children to wrap */
-    overflow-wrap: break-word;
-    word-wrap: break-word; 
-    /* Remove any potentially restrictive max-widths if applicable */
-    max-width: 100%; 
+/* Fix 1: Ensures content block elements have correct max-width for responsive behavior */
+.notion-frame,
+.notion-page-scroller {
+  max-width: 100%;
 }
 
-/* Target all text blocks, links, and list items within the Notion content */
-.notion-text,
-.notion-link,
-.notion-list-item,
-.notion-list-item > div {
-    /* Force text to break onto a new line if it hits the edge of its container */
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-    word-break: break-word; 
-    /* CRITICAL: Prevents text from being treated as a single line, allowing it to wrap */
-    white-space: normal !important; 
+/* Fix 2: Ensures the top header menu is sticky and sized correctly */
+.notion-header {
+  z-index: 100; 
 }
 
-/* Specific fix for link text inside lists (like your items 7, 9, 11) */
-.notion-list-item a {
-    display: inline; /* Ensure links flow correctly with surrounding text */
+/* Fix 3: Ensures images and embedded content are responsive */
+.notion-page-content img,
+.notion-page-content .notion-asset-wrapper {
+  max-width: 100%;
+  height: auto;
 }
 
-/* --- END: FIX FOR NOTION TEXT WRAPPING ISSUE --- */
+/* Fix 4: Addresses Text Wrapping/Dividing Issue (Specific to Notion list items) */
+.notion-page-content > div {
+  word-break: break-word; 
+  max-width: 100%;
+}
+.notion-list-item {
+  white-space: normal; /* Forces text within lists (like your list items) to wrap normally */
+}
+
+/* Fix 5: Embedded Content Base Style (Light Mode Only) */
+.notion-asset-wrapper iframe {
+  background-color: transparent !important;
+}
+
+/* Fix 6: Adjust padding for smaller screens to prevent text distortion */
+@media (max-width: 768px) {
+  .notion-page {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
