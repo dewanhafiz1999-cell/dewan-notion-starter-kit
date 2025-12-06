@@ -1,41 +1,22 @@
-/* Minimal styles to fix layout, menu, content width, and text wrapping issues. */
-
-/* Fix 1: Ensures content block elements have correct max-width for responsive behavior */
-.notion-frame,
-.notion-page-scroller {
-  max-width: 100%;
-}
-
-/* Fix 2: Ensures the top header menu is sticky and sized correctly */
-.notion-header {
-  z-index: 100; 
-}
-
-/* Fix 3: Ensures images and embedded content are responsive */
-.notion-page-content img,
-.notion-page-content .notion-asset-wrapper {
-  max-width: 100%;
-  height: auto;
-}
-
-/* Fix 4: Addresses Text Wrapping/Dividing Issue (Specific to Notion list items) */
-.notion-page-content > div {
-  word-break: break-word; 
-  max-width: 100%;
-}
+/* Fixes wrapping issues for rich text links and long sentences inside list items */
 .notion-list-item {
-  white-space: normal; /* Forces text within lists (like your list items) to wrap normally */
+    /* This ensures the entire list item content behaves as a block */
+    display: block;
+    /* Ensures text wraps normally and breaks properly on small screens */
+    word-break: break-word;
+    word-wrap: break-word;
 }
 
-/* Fix 5: Embedded Content Base Style (Light Mode Only) */
-.notion-asset-wrapper iframe {
-  background-color: transparent !important;
+/* Target the text container within the list item */
+.notion-list-item > div:last-child {
+    /* Allow flexible content to wrap */
+    display: block; 
 }
 
-/* Fix 6: Adjust padding for smaller screens to prevent text distortion */
-@media (max-width: 768px) {
-  .notion-page {
-    padding-left: 1rem;
-    padding-right: 1rem;
-  }
+/* Target the text and link elements directly for extra assurance */
+.notion-text,
+.notion-text a,
+.notion-link {
+    word-break: break-word;
+    word-wrap: break-word;
 }
