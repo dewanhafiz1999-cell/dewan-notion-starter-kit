@@ -1,4 +1,4 @@
-/* Minimal styles to fix layout, menu, and content width issues for Notion-like performance. */
+/* Minimal styles to fix layout, menu, content width, and text wrapping issues. */
 
 /* Fix 1: Ensures content block elements have correct max-width for responsive behavior */
 .notion-frame,
@@ -8,7 +8,6 @@
 
 /* Fix 2: Ensures the top header menu is sticky and sized correctly */
 .notion-header {
-  /* You may need to adjust z-index if elements overlap */
   z-index: 100; 
 }
 
@@ -19,16 +18,23 @@
   height: auto;
 }
 
-/* Fix 4: Ensures inline content (like your links/text) doesn't overflow */
+/* Fix 4: Addresses Text Wrapping/Dividing Issue (Specific to Notion list items) */
 .notion-page-content > div {
-  word-break: break-word; /* Allows long words/links to break to the next line */
+  word-break: break-word; 
   max-width: 100%;
 }
+.notion-list-item {
+  white-space: normal; /* Forces text within lists to wrap normally */
+}
 
-/* Fix 5: Ensure the custom header (like the one with your cover image) is contained */
-.notion-header-image {
-  overflow: hidden;
-  max-width: 100%;
+/* Fix 5: Embedded Content Theme Fix */
+/* This ensures embedded GitHub/other content respects the parent theme */
+.notion-asset-wrapper iframe {
+  background-color: transparent !important;
+}
+
+.dark-mode .notion-asset-wrapper iframe {
+  filter: invert(0.9) hue-rotate(180deg) !important;
 }
 
 /* Fix 6: Adjust padding for smaller screens to prevent text distortion */
