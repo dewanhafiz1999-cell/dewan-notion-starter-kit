@@ -1,22 +1,30 @@
-/* Fixes wrapping issues for rich text links and long sentences inside list items */
-.notion-list-item {
-    /* This ensures the entire list item content behaves as a block */
-    display: block;
-    /* Ensures text wraps normally and breaks properly on small screens */
-    word-break: break-word;
-    word-wrap: break-word;
+/* --- START: FIX FOR NOTION TEXT WRAPPING ISSUE --- */
+
+/* Target the main page content container */
+.notion-page-content {
+    /* Ensure the content container allows its children to wrap */
+    overflow-wrap: break-word;
+    word-wrap: break-word; 
+    /* Remove any potentially restrictive max-widths if applicable */
+    max-width: 100%; 
 }
 
-/* Target the text container within the list item */
-.notion-list-item > div:last-child {
-    /* Allow flexible content to wrap */
-    display: block; 
-}
-
-/* Target the text and link elements directly for extra assurance */
+/* Target all text blocks, links, and list items within the Notion content */
 .notion-text,
-.notion-text a,
-.notion-link {
-    word-break: break-word;
+.notion-link,
+.notion-list-item,
+.notion-list-item > div {
+    /* Force text to break onto a new line if it hits the edge of its container */
+    overflow-wrap: break-word;
     word-wrap: break-word;
+    word-break: break-word; 
+    /* CRITICAL: Prevents text from being treated as a single line, allowing it to wrap */
+    white-space: normal !important; 
 }
+
+/* Specific fix for link text inside lists (like your items 7, 9, 11) */
+.notion-list-item a {
+    display: inline; /* Ensure links flow correctly with surrounding text */
+}
+
+/* --- END: FIX FOR NOTION TEXT WRAPPING ISSUE --- */
