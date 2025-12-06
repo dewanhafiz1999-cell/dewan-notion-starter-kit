@@ -10,8 +10,7 @@ body {
   overflow-x: hidden;
   margin: 0;
   padding: 0;
-  /* Fix 1: Prevents unwanted zooming/scrolling behavior on touch devices */
-  touch-action: pan-y;
+  /* Fix 1: Ensures text size doesn't adjust on mobile, helping stabilize the viewport */
   -webkit-text-size-adjust: 100%;
   
   /* Use system font stack for the standard Notion look */
